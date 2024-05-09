@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>PAVED.js Example</title>
+	</head>
+	<body>
+		<script src="../../lib/index.js"></script>
+		<script type="text/javascript">
+			window.onload = function () {
+				// Generate some demo data
+				const rows = [];
+				const categories = ["Category 1", "Category 2", "Category 3"];
+				for (let i = 0; i < 50; ++i) {
+					rows.push({
+						"Attribute 1": Math.random() * (3.2 - 0.5) + 0.5,
+						"Attribute 2": Math.random() * (0.68 - 0.28) + 0.28,
+						"Attribute 3": categories[Math.floor(Math.random() * 3)],
+						"Attribute 4": Math.random() * (96 - 60) + 60,
+						"Attribute 5": Math.random() * (153 - 130) + 153,
+					});
+				}
+
+				// Render visualization
+				const chart = PAVEDJS.asParallelCoordinates(document.body, rows);
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,6 @@
+.DS_Store
+.idea/
+.tool-versions
+lib/
+node_modules/
+docs/

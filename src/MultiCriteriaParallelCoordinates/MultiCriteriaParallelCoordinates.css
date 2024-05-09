@@ -1,0 +1,105 @@
+.paved-container g.handle--custom path {
+	fill-opacity: 0.8;
+	cursor: ns-resize;
+}
+
+.paved-container.light g.handle--custom path {
+	fill: rgba(33, 37, 41, 0.8);
+	stroke: rgb(33, 37, 41);
+}
+
+.paved-container.dark g.handle--custom path {
+	fill: rgba(240, 240, 240, 0.8);
+	stroke: rgb(240, 240, 240);
+}
+
+.paved-container g.handle--custom text {
+	text-anchor: middle;
+	font-size: 9px;
+}
+
+.paved-container.light g.handle--custom text {
+	fill: rgb(240, 240, 240);
+}
+
+.paved-container.dark g.handle--custom text {
+	fill: rgb(33, 37, 41);
+}
+
+.paved-container polygon.triangle {
+	stroke: none;
+}
+
+.paved-container.light g.violin path {
+	stroke: rgb(240, 240, 240);
+	fill: rgba(240, 240, 240, 0.5);
+}
+
+.paved-container.dark g.violin path {
+	stroke: rgb(33, 37, 41);
+	fill: rgba(33, 37, 41, 0.5);
+}
+
+.paved-container .foreground {
+	pointer-events: all;
+}
+
+.paved-container .polyline {
+	pointer-events: stroke; /* Workaround such that pointer-events: all on .foreground does not intervene with path hovering */
+}
+
+.paved-container .polyline.hidden {
+	display: none !important;
+}
+
+/*ID necessary to not intercept with styles from CrossComponentParallelCoordinatesContainer.css*/
+.paved-container .polyline.brushed.focused {
+	cursor: pointer;
+}
+
+/*.flagged styles are more important than .brushed styles*/
+.paved-container path.flagged {
+	stroke-width: 4px !important;
+	stroke: #298cf9 !important;
+	opacity: 1 !important;
+	display: inline;
+}
+
+.paved-container.dark #brushed-tooltip text {
+	text-shadow:
+		-1px -1px 0 black,
+		1px -1px 0 black,
+		-1px 1px 0 black,
+		1px 1px 0 black;
+}
+
+.paved-container.light #brushed-tooltip text {
+	text-shadow:
+		-1px -1px 0 white,
+		1px -1px 0 white,
+		-1px 1px 0 white,
+		1px 1px 0 white;
+}
+
+.paved-container text#path-label {
+	font-size: 11px;
+}
+
+.paved-container.light text#path-label {
+	fill: rgb(33, 37, 41);
+}
+
+.paved-container.dark text#path-label {
+	fill: rgb(240, 240, 240);
+}
+
+.paved-container .tick text {
+	pointer-events: none;
+}
+
+.paved-container.light .triangle {
+	fill: rgb(33, 37, 41);
+}
+.paved-container.dark .triangle {
+	fill: rgb(240, 240, 240);
+}

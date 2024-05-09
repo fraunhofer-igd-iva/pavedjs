@@ -1,0 +1,57 @@
+{
+	"name": "pavedjs",
+	"version": "1.0.0",
+	"description": "PAVED is an interactive visualization built to ease cost-benefit trade-offs.",
+	"author": "Lena Cibulski",
+	"license": "MIT",
+	"homepage": "https://paved.iva.igd.fraunhofer.de/",
+	"main": "lib/index",
+	"files": [
+		"/lib"
+	],
+	"dependencies": {
+		"d3-array": "3.2.2",
+		"d3-axis": "3.0.0",
+		"d3-brush": "3.0.0",
+		"d3-color": "3.1.0",
+		"d3-drag": "3.0.0",
+		"d3-scale": "4.0.2",
+		"d3-selection": "3.0.0",
+		"d3-shape": "3.2.0",
+		"d3-transition": "3.0.1",
+		"raphael": "2.3.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "9.1.1",
+		"@types/d3-array": "3.0.4",
+		"@types/d3-axis": "3.0.6",
+		"@types/d3-brush": "3.0.2",
+		"@types/d3-color": "3.1.0",
+		"@types/d3-drag": "3.0.2",
+		"@types/d3-scale": "4.0.3",
+		"@types/d3-selection": "3.0.4",
+		"@types/d3-shape": "3.1.1",
+		"@types/d3-transition": "3.0.3",
+		"@types/node": "12.7.2",
+		"@types/raphael": "2.1.30",
+		"css-loader": "^5.2.4",
+		"eslint": "8.56.0",
+		"eslint-config-prettier": "9.1.0",
+		"prettier": "3.2.5",
+		"style-loader": "^2.0.0",
+		"ts-loader": "^9.1.1",
+		"typedoc": "0.25.13",
+		"typescript": "5.4.5",
+		"typescript-eslint": "7.7.1",
+		"webpack": "^5.91.0",
+		"webpack-cli": "^4.6.0"
+	},
+	"scripts": {
+		"build": "webpack",
+		"lint": "eslint src --ext ts",
+		"lint:fix": "eslint src --fix --ext .ts",
+		"prepublishOnly": "npm run build",
+		"prettier": "npx prettier --write .",
+		"typedoc": "npx typedoc index.ts --name PAVED.js --readme none"
+	}
+}

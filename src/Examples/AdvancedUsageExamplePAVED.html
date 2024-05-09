@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>PAVED Test</title>
+		<style>
+			body {
+				background-color: rgb(31, 37, 43);
+			}
+
+			button {
+				margin-right: 10px;
+				border: none;
+			}
+
+			div {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="../../lib/index.js"></script>
+		<script type="text/javascript">
+			window.onload = function () {
+				const alternativeData = [
+					{
+						"Motor.Trcog_pp": 0.6891308083334063,
+						Efficiency: 62.66375798610199,
+						"Masses.Cost": 46.9237987234,
+						Topology: "Topology 1",
+						"Stator.dsi": 130.0,
+					},
+					{
+						"Motor.Trcog_pp": 0.49026314179584923,
+						Efficiency: 54.72115866844155,
+						"Masses.Cost": 79.34629745285316,
+						Topology: "Topology 1",
+						"Stator.dsi": 137.5,
+					},
+					{
+						"Motor.Trcog_pp": 0.4853790642323804,
+						Efficiency: 60.17265899433034,
+						"Masses.Cost": 92.20238166722908,
+						Topology: "Topology 2",
+						"Stator.dsi": 141.5,
+					},
+					{
+						"Motor.Trcog_pp": 2.5357760042656454,
+						Efficiency: 50.43897735486303,
+						"Masses.Cost": 89.13965828264892,
+						Topology: "Topology 2",
+						"Stator.dsi": 133.5,
+					},
+					{
+						"Motor.Trcog_pp": 0.9359150169714326,
+						Efficiency: 73.50466652894402,
+						"Masses.Cost": 84.59228376215933,
+						Topology: "Topology 2",
+						"Stator.dsi": 120.3,
+					},
+					{
+						"Motor.Trcog_pp": 3.2175185012243706,
+						Efficiency: 30.14994980075979,
+						"Masses.Cost": 60.21351564017243,
+						Topology: "Topology 2",
+						"Stator.dsi": 153.0,
+					},
+					{
+						"Motor.Trcog_pp": 1.8028625442082673,
+						Efficiency: 65.63205584920607,
+						"Masses.Cost": 96.93681235239961,
+						Topology: "Topology 3",
+						"Stator.dsi": 134.0,
+					},
+					{
+						"Motor.Trcog_pp": 1.2648446220554477,
+						Efficiency: 85.987398918237,
+						"Masses.Cost": 114.3205345816012,
+						Topology: "Topology 3",
+						"Stator.dsi": 137.5,
+					},
+				];
+
+				// Generate some demo data
+				const rows = [];
+				const categories = ["Category 1", "Category 2", "Category 3"];
+				for (let i = 0; i < 50; ++i) {
+					rows.push({
+						"Attribute 1": Math.random() * (3.2 - 0.5) + 0.5,
+						"Attribute 2": Math.random() * (0.68 - 0.28) + 0.28,
+						"Attribute 3": categories[Math.floor(Math.random() * 3)],
+						"Attribute 4": Math.random() * (96 - 60) + 60,
+						"Attribute 5": Math.random() * (153 - 130) + 153,
+					});
+				}
+
+				// Configure visualization
+				const options = {
+					padding: {
+						top: 50,
+						right: 40,
+						bottom: 60,
+						left: 40,
+					},
+				};
+				const builder = PAVEDJS.builder(rows, options);
+				builder
+					.registerOptimizationDirections({
+						"Attribute 1": PAVEDJS.OPTIMIZATION_TYPE.MIN,
+						"Attribute 2": PAVEDJS.OPTIMIZATION_TYPE.MAX,
+						"Attribute 4": PAVEDJS.OPTIMIZATION_TYPE.MIN,
+					})
+					.registerHEXColors({ "Attribute 1": "#FF0000", "Attribute 2": "#00FF00", "Attribute 4": "#0000FF" })
+					.registerUnits({ "Attribute 1": "mm", "Attribute 2": "EUR", "Attribute 4": "mm" });
+
+				// Render visualization
+				const chart = builder.buildPAVED(document.body);
+
+				// Subsequent modifications. Do not forget to update the chart.
+				chart
+					.setTheme(PAVEDJS.THEME.DARK)
+					.setHoveredIDChangeHandler((id) => {
+						console.log("Hovered ID", id);
+					})
+					.setFlaggedIDsChangeHandler((ids) => {
+						console.log("Flagged IDs", ids);
+					})
+					.update();
+
+				// Subsequent modifications typically triggered by user interaction.
+				let databutton = document.createElement("button");
+				databutton.innerHTML = "Update data";
+				databutton.onclick = function () {
+					const alternativeRows = [];
+					const categories = ["Category 1", "Category 2", "Category 3", "Category 4"];
+					for (let i = 0; i < 10; ++i) {
+						alternativeRows.push({
+							"Attribute 2": Math.random() * (0.55 - 0.13) + 0.13,
+							"Attribute 3": categories[Math.floor(Math.random() * 4)],
+							"Attribute 4": Math.random() * (162 - 121) + 121,
+							"Attribute 5": Math.random() * (3.2 - 0.8) + 0.8,
+							"Attribute 6": Math.random(),
+						});
+					}
+					chart
+						.setRows(alternativeRows)
+						//.setDimensionSubset(["Attribute 3", "Attribute 4"])
+						.update();
+				};
+
+				let gradientbutton = document.createElement("button");
+				gradientbutton.innerHTML = "Enable gradient brush";
+				gradientbutton.onclick = function () {
+					chart
+						.enableColorCoding({ type: PAVEDJS.COLOR_CODING.GRADIENT_BRUSH, attribute: "Attribute 4" })
+						.update();
+				};
+
+				let curvebutton = document.createElement("button");
+				curvebutton.innerHTML = "Enable curve smoothing";
+				curvebutton.onclick = function () {
+					chart.setCurveSmoothing(true).update();
+				};
+
+				let div = document.createElement("div");
+				div.appendChild(databutton);
+				div.appendChild(gradientbutton);
+				div.appendChild(curvebutton);
+				document.body.appendChild(div);
+			};
+		</script>
+	</body>
+</html>
