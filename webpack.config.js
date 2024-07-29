@@ -24,11 +24,5 @@ module.exports = {
 		path: path.resolve(__dirname, "lib"),
 		library: "PAVEDJS",
 		libraryTarget: "umd",
-	},
-	externals: [
-		{
-			react: "react",
-			d3: "d3",
-		},
-	],
+	}
 };
