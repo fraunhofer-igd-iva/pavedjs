@@ -286,3 +286,9 @@ Before getting started, try searching the issue tracker for known issues or fixe
 ## Authors
 
 [Lena Cibulski](https://www.igd.fraunhofer.de/en/institute/employees/lena-cibulski.html), Fraunhofer IGD
+
+## Acknowledgments 
+
+This work was funded by the EC Horizon 2020 programme under grant agreement n°768892. 
+
+This work has been supported by the Linz Center of Mechatronics within the framework of the Austrian COMET-K2 program.
