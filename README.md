@@ -19,9 +19,9 @@ It can be used for decisions in professional contexts like product development o
 -   [Demo application](https://paved.iva.igd.fraunhofer.de) with test dataset
 -   [API documentation]() (coming soon)
 
-## Usage
+## Installation
 
-### Installation
+### Local Installation
 
 The setup requires [Node.js v16 or higher](https://nodejs.org/en/download/).
 
@@ -33,14 +33,34 @@ npm run build
 ```
 
 This generates the production build in `./lib/`.
-From there, the library can be embedded in an HTML document by adding it as an external script file using a relative path: `<script src="../pavedjs/lib/index.js"></script>`.
-It can also be added as a local dependency to your `package.json`:
+
+From there, the library can be embedded in an HTML document by adding it as an external script file using a relative path:
+
+```javascript
+`<script src="../pavedjs/lib/index.js"></script>`
+```
+
+The same relative path can also be used to add it as a local dependency to your `package.json`:
 
 ```javascript
 "dependencies": {
 	"pavedjs": "file:../pavedjs/lib"
 }
 ```
+
+### Installation from Github
+
+You can also add the library as a git dependency to your `package.json`:
+
+```javascript
+"dependencies": {
+	"pavedjs": "fraunhofer-igd-iva/pavedjs"
+}
+```
+
+## Usage
+
+The following usage examples assume an installation via external script file.
 
 ### Minimal Usage Example Parallel Coordinates
 
